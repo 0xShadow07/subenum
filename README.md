@@ -35,13 +35,14 @@ script resolves its own symlink.
 ## Install (callable from anywhere)
 
 ```bash
-# one-time setup already done on this machine:
-ln -s /home/ghost/Tools/asm/subenum.sh ~/.local/bin/subenum
-echo 'alias subenum="/home/ghost/Tools/asm/subenum.sh"' >> ~/.bashrc
+# one-time setup (run it from anywhere; uses your home path):
+ln -sf "$HOME/Tools/asm/subenum.sh" ~/.local/bin/subenum
+echo 'alias subenum="$HOME/Tools/asm/subenum.sh"' >> ~/.bashrc
+exec bash   # reload shell aliases
 ```
 
 After this, run it from any directory as `subenum ...`. Results still go to
-`/home/ghost/Tools/asm/recon/` (the script follows its own symlink).
+`~/Tools/asm/recon/` (the script follows its own symlink).
 
 ## Usage
 
@@ -57,12 +58,12 @@ chmod +x subenum.sh
 
 ### Custom output folder
 
-By default results go to `/home/ghost/Tools/asm/recon/`. To use your own
+By default results go to `~/Tools/asm/recon/`. To use your own
 dedicated folder instead:
 
 ```bash
 subenum -o /path/to/my-results target.com        # one run
-subenum -o /home/ghost/subdomain-enum-results -l targets.txt
+subenum -o ~/subdomain-enum-results -l targets.txt
 ```
 
 - The folder is created if it does not exist (parents included).
@@ -105,7 +106,7 @@ subenum -o /home/ghost/subdomain-enum-results -l targets.txt
 ## Output structure (one folder per target)
 
 Results are ALWAYS saved under the script's own directory
-(`/home/ghost/Tools/asm/recon/...`) no matter which directory you run the
+(`~/Tools/asm/recon/...`) no matter which directory you run the
 tool from.
 
 ```
